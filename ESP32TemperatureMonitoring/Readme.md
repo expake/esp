@@ -40,6 +40,34 @@ This project implements a temperature monitoring system using ESP32, DS18B20 tem
 - **10kΩ Resistor** (pull-up resistor for the one-wire bus)
 - Jumper wires and breadboard for connections.
 
+## How to Connect DS18B20 Sensors to ESP32
+
+### Components Needed
+1. DS18B20 temperature sensor(s)
+2. 10kΩ resistor
+3. Breadboard and jumper wires
+
+### Pin Connections
+Each DS18B20 sensor has three pins:
+1. **VCC**: Power supply (3.3V or 5V from the ESP32).
+2. **GND**: Ground.
+3. **DATA**: One-wire data signal.
+
+Follow these steps to connect the sensors:
+1. Connect all **VCC** pins to the **3.3V** pin on the ESP32.
+2. Connect all **GND** pins to the **GND** pin on the ESP32.
+3. Connect all **DATA** pins together and to a GPIO pin on the ESP32 (e.g., GPIO4, as used in the sketch).
+4. Place a **10kΩ resistor** between the **DATA** line and **VCC** (pull-up resistor).
+
+### Example Circuit
+- DS18B20 pin 1 (GND) → ESP32 GND
+- DS18B20 pin 2 (DATA) → ESP32 GPIO4
+- DS18B20 pin 3 (VCC) → ESP32 3.3V
+- 10kΩ resistor between GPIO4 (DATA) and 3.3V
+
+### Multiple Sensors
+If using multiple DS18B20 sensors, connect their **DATA** lines together to the same GPIO pin and ensure the pull-up resistor is in place.
+
 ## Software Requirements
 
 - Arduino IDE with the following libraries:
@@ -51,8 +79,7 @@ This project implements a temperature monitoring system using ESP32, DS18B20 tem
 ## Setup Instructions
 
 1. **Hardware Connection**:
-   - Connect the DS18B20 sensors to the ESP32's GPIO pins.
-   - Use a 10kΩ resistor as a pull-up for the data line.
+   - Follow the connection guide above to wire the DS18B20 sensors to your ESP32.
 
 2. **Code Configuration**:
    - Set your Wi-Fi credentials:
@@ -89,6 +116,7 @@ This project implements a temperature monitoring system using ESP32, DS18B20 tem
 
 ### Web Interface
 Displays live temperature readings with a chart.
+![image](https://github.com/user-attachments/assets/0caa0952-ec07-4789-a9e4-4e8c24db189d)
 
 ### Telegram Bot
 - Example of `/temp` command:
@@ -121,3 +149,4 @@ This project is licensed under the MIT License. Feel free to use, modify, and sh
 ---
 
 **Happy monitoring!** 🎉
+
